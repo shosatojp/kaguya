@@ -1,0 +1,24 @@
+table.square{
+    text-align: center;
+    font-family: monospace;
+    font-size: xx-large;
+    width: 80vw;
+    height: 80vw;
+}
+
+table.square>td{
+    padding: 0;
+}
+
+table.square>tr:first-child{
+    border-top: 1px solid black;
+}
+table.square>tr:nth-of-type(5n){
+    border-bottom: 1px solid black;
+}
+table.square tr td:first-child{
+    border-left: 1px solid black;
+}
+table.square tr td:nth-of-type(5n){
+    border-right: 1px solid black;
+}
