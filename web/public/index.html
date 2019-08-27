@@ -27,6 +27,7 @@
 <script>
     const rss = [];
     document.querySelector('#create').addEventListener('click', () => {
+        while (document.querySelector('#table').firstElementChild) document.querySelector('#table').firstElementChild.remove();
         document.querySelector('#title-textarea').value.split('\n').forEach(title => {
             var rs = new RandSquare(10, 10, title);
             document.querySelector('#table').appendChild(rs.create_table());
