@@ -16,6 +16,8 @@
         <div id="header">
             <textarea id="title-textarea" placeholder="Titles (One title per line)" rows="6"></textarea>
             <!-- <input id="title" type="text" placeholder="Title"> -->
+            <label>Square size</label>
+            <input type="number" min="5" max="100" id="square-size" value="10">
             <button id="create">Create</button>
             <a id="download-link" download></a>
         </div>
@@ -25,23 +27,26 @@
     </div>
 </body>
 <script>
-    const rss = [];
+    let rss = [];
     document.querySelector('#create').addEventListener('click', () => {
         const src = document.querySelector('#title-textarea').value;
         localStorage.setItem('sites', src);
         while (document.querySelector('#table').firstElementChild) document.querySelector('#table').firstElementChild.remove();
+        const square_size = document.querySelector('#square-size').value || 10;
         src.split('\n').forEach(title => {
-            var rs = new RandSquare(10, 10, title);
+            var rs = new RandSquare(square_size, square_size, title);
             document.querySelector('#table').appendChild(rs.create_table());
             rss.push(rs);
         });
 
-        const canvas = RandSquare.create_document(rss);
+        const canvas = RandSquare.create_document(rss, square_size * 50);
 
         const img = canvas.toDataURL("image/png");
         const a = document.querySelector('#download-link');
         a.setAttribute('href', img);
         a.textContent = 'Download Image';
+
+        rss=[];
     });
     const src = localStorage.getItem('sites');
     if (src) document.querySelector('#title-textarea').value = src;
