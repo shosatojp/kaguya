@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -13,8 +13,9 @@
 <body>
     <div id="main">
         <div id="header">
-            <input id="title" type="text" placeholder="title">
-            <button id="create">create</button>
+            <input id="title" type="text" placeholder="Title">
+            <button id="create">Create</button>
+            <a id="download-link" download></a>
         </div>
         <div id="table">
 
@@ -22,8 +23,19 @@
     </div>
 </body>
 <script>
-    var rs = new RandSquare(10, 10);
-    document.querySelector('#table').appendChild(rs.create_table('hoge'));
+    const rss = [];
+    document.querySelector('#create').addEventListener('click', () => {
+        var rs = new RandSquare(10, 10, document.querySelector('#title').value);
+        document.querySelector('#table').appendChild(rs.create_table());
+        rss.push(rs);
+
+        const canvas = RandSquare.create_document(rss);
+
+        const img = canvas.toDataURL("image/png");
+        const a = document.querySelector('#download-link');
+        a.setAttribute('href', img);
+        a.textContent = 'Download';
+    });
 </script>
 
 </html>
