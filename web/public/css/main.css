@@ -2,18 +2,19 @@ table.square{
     text-align: center;
     font-family: monospace;
     font-size: xx-large;
-    width: 80vw;
-    height: 80vw;
+    width: 80vh;
+    height: 80vh;
+    margin: 0 auto;
 }
 
-table.square>td{
+table.square td{
     padding: 0;
 }
 
-table.square>tr:first-child{
+table.square tr:first-child td{
     border-top: 1px solid black;
 }
-table.square>tr:nth-of-type(5n){
+table.square tr:nth-of-type(5n) td{
     border-bottom: 1px solid black;
 }
 table.square tr td:first-child{
@@ -21,4 +22,17 @@ table.square tr td:first-child{
 }
 table.square tr td:nth-of-type(5n){
     border-right: 1px solid black;
+}
+
+
+.square_title{
+    text-align: center;
+    font-size: x-large;
+    font-family: monospace;
+    padding: 5px;
+}
+
+#table{
+    display: flex;
+    flex-wrap: wrap;
 }

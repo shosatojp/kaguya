@@ -16,7 +16,9 @@ const RandSquare = (function () {
         }
         return result;
     };
-    RandSquare.prototype.create_table = function () {
+    RandSquare.prototype.create_table = function (title = undefined) {
+        const wrap = document.createElement('div');
+        wrap.classList.add('square_wrap');
         const table = document.createElement('table');
         table.classList.add('square');
         for (let i = 0; i < this.y; i++) {
@@ -28,7 +30,12 @@ const RandSquare = (function () {
             }
             table.appendChild(tr);
         }
-        return table;
+        wrap.appendChild(table);
+        const e_title = document.createElement('div');
+        e_title.textContent = title || '';
+        e_title.classList.add('square_title');
+        wrap.appendChild(e_title);
+        return wrap;
     };
     RandSquare.prototype.create_canvas = function (cw = 500, ch = 500, title = undefined, color = '#000') {
         const title_h = 50;
