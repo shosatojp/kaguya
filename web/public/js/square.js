@@ -47,9 +47,6 @@ const RandSquare = (function () {
         const h = sh - (!!this.title * title_h), w = sw;
         const context = canvas.getContext('2d');
         const text_h = h / this.y, text_w = w / this.x;
-        context.fillStyle = '#fff';
-        context.rect(0, 0, canvas.width, canvas.height);
-        context.fill();
         context.font = Math.min(text_h, text_w) * 0.7 + 'px monospace';
         context.fillStyle = color;
         context.textBaseline = 'center';
@@ -67,6 +64,10 @@ const RandSquare = (function () {
         const canvas = document.createElement('canvas');
         canvas.height = Math.ceil(randsquares.length / col) * squaresize + margin * 2;
         canvas.width = col * squaresize + margin * 2;
+        const context = canvas.getContext('2d');
+        context.fillStyle = '#fff';
+        context.rect(0, 0, canvas.width, canvas.height);
+        context.fill();
         let x = margin, y = margin;
         randsquares.forEach((rs, i) => {
             rs.draw_on_canvas(canvas, squaresize, squaresize, x, y);
