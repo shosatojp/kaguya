@@ -1,16 +1,15 @@
 const RandSquare = (function () {
-    const RandSquare = function (x, y, title) {
+    const RandSquare = function (x, y, title, chars) {
         this.x = x; this.y = y; this.title = title;
+        this.chars = chars;
         this.square = this._gen_rand_square(x, y);
     };
-    const STRING_SRC = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()=-~^|\\[{]}:*@`;+_/?.>,<';
-    const STRING_SRC_LEN = STRING_SRC.length;
     RandSquare.prototype._gen_rand_square = function (x, y) {
         const result = [];
         for (let i = 0; i < y; i++) {
             const temp = [];
             for (let j = 0; j < x; j++) {
-                temp.push(STRING_SRC[Math.floor(Math.random() * STRING_SRC_LEN)]);
+                temp.push(this.chars[Math.floor(Math.random() * this.chars.length)]);
             }
             result.push(temp);
         }
@@ -63,7 +62,7 @@ const RandSquare = (function () {
     RandSquare.create_document = function (randsquares = [], squaresize = 500, col = 3, margin = 10) {
         const canvas = document.createElement('canvas');
         canvas.height = Math.ceil(randsquares.length / col) * squaresize + margin * 2;
-        canvas.width = col * squaresize + margin * 2;
+        canvas.width = Math.min(randsquares.length, col) * squaresize + margin * 2;
         const context = canvas.getContext('2d');
         context.fillStyle = '#fff';
         context.rect(0, 0, canvas.width, canvas.height);
