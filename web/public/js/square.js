@@ -43,7 +43,7 @@ const RandSquare = (function () {
     };
     RandSquare.prototype.draw_on_canvas = function (canvas, sw = 500, sh = 500, origin_x = 0, origin_y = 0, color = '#000') {
         const title_h = 50;
-        const h = sh - (!!this.title * title_h), w = sw;
+        const h = sh - title_h, w = sw;
         const context = canvas.getContext('2d');
         const text_h = h / this.y, text_w = w / this.x;
         context.font = Math.min(text_h, text_w) * 0.7 + 'px monospace';
